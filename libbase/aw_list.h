@@ -7,10 +7,10 @@ struct aw_list_node_s {
     aw_uchar_t          usersigned;
 };
 
-struct aw_list_s {
+typedef struct {
     aw_list_node_t      sentinel;
     aw_list_node_t     *nil;
-};
+} aw_list_t;
 
 #define aw_list_node_init(node)       \
     (node)->usersigned = 0;
@@ -34,8 +34,10 @@ void aw_list_clear(aw_list_t *list);
 
 void aw_list_pushhead(aw_list_t *list, aw_list_node_t *node);
 void aw_list_pushtail(aw_list_t *list, aw_list_node_t *node);
+
 aw_list_node_t *aw_list_pophead(aw_list_t *list);
 aw_list_node_t *aw_list_poptail(aw_list_t *list);
+
 aw_list_node_t *aw_list_head(aw_list_t *list);
 aw_list_node_t *aw_list_tail(aw_list_t *list);
 

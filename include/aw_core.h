@@ -17,10 +17,8 @@ typedef unsigned long               aw_key_t;
 typedef pthread_t                   aw_tid_t;
 
 typedef struct aw_list_node_s       aw_list_node_t;
-typedef struct aw_list_s            aw_list_t;
 
 typedef struct aw_rbtree_node_s     aw_rbtree_node_t;
-typedef struct aw_rbtree_s          aw_rbtree_t;
 
 #include <aw_key.h>
 #include <aw_list.h>

@@ -21,6 +21,7 @@
 #include <dirent.h>
 #include <glob.h>
 #include <sys/vfs.h>
+#include <pthread.h>
 
 #include <sys/uio.h>
 #include <sys/stat.h>

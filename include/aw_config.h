@@ -19,8 +19,8 @@
 #define AW_MEM_N_BLOCK_SLOT  8
 #endif
 
-#ifndef AW_MEM_BLOCK_FIRST_OFFSET
-#define AW_MEM_BLOCK_FIRST_OFFSET    4
+#ifndef AW_MEM_BLOCK_FIRST_SLOTSIZE
+#define AW_MEM_BLOCK_FIRST_SLOTSIZE    32
 #endif
 
 #ifndef AW_MEM_BLOCK_SIZE
@@ -29,10 +29,6 @@
 
 #ifndef AW_MEM_POOL_SIZE
 #define AW_MEM_POOL_SIZE    (1024 * AW_PAGESIZE)
-#endif
-
-#ifndef AW_DEFAULT_PTR_ALIGNMENT
-#define AW_DEFAULT_PTR_ALIGNMENT   16
 #endif
 
 #endif

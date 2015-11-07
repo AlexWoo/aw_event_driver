@@ -10,11 +10,11 @@ struct aw_rbtree_node_s {
     aw_uchar_t           usersigned;
 };
 
-struct aw_rbtree_s {
+typedef struct {
     aw_rbtree_node_t    *root;
     aw_rbtree_node_t     sentinel;
     aw_rbtree_node_t    *nil;
-};
+} aw_rbtree_t;
 
 #define AW_RBTREE_RED       0
 #define AW_RBTREE_BLK       1
@@ -49,14 +49,23 @@ struct aw_rbtree_s {
     (type*)((char *)ptr - offsetof(type, member));
 
 aw_rbtree_node_t *aw_rbtree_search(aw_rbtree_t *tree, aw_key_t key);
+aw_rbtree_node_t *aw_rbtree_pop(aw_rbtree_t *tree, aw_key_t key);
+
 aw_rbtree_node_t *aw_rbtree_min(aw_rbtree_t *tree, aw_rbtree_node_t *node);
 aw_rbtree_node_t *aw_rbtree_max(aw_rbtree_t *tree, aw_rbtree_node_t *node);
+
 aw_rbtree_node_t *aw_rbtree_popmin(aw_rbtree_t *tree, aw_rbtree_node_t *node);
 aw_rbtree_node_t *aw_rbtree_popmax(aw_rbtree_t *tree, aw_rbtree_node_t *node);
+
 aw_rbtree_node_t *aw_rbtree_predecessor(aw_rbtree_t *tree, aw_rbtree_node_t *node);
 aw_rbtree_node_t *aw_rbtree_sucessor(aw_rbtree_t *tree, aw_rbtree_node_t *node);
+
+aw_rbtree_node_t *aw_rbtree_poppredecessor(aw_rbtree_t *tree, aw_rbtree_node_t *node);
+aw_rbtree_node_t *aw_rbtree_popsucessor(aw_rbtree_t *tree, aw_rbtree_node_t *node);
+
 void aw_rbtree_insert(aw_rbtree_t *tree, aw_rbtree_node_t *node);
 void aw_rbtree_delete(aw_rbtree_t *tree, aw_rbtree_node_t *node);
+
 void aw_rbtree_print(aw_rbtree_t *tree, aw_rbtree_node_t *node, size_t indent);
 
 #endif

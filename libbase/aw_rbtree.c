@@ -32,6 +32,21 @@ aw_rbtree_search(aw_rbtree_t *tree, aw_key_t key)
 }
 
 aw_rbtree_node_t *
+aw_rbtree_pop(aw_rbtree_t *tree, aw_key_t key)
+{
+    aw_rbtree_node_t *p;
+
+    p = aw_rbtree_search(tree, key);
+
+    if (NULL != p) {
+        
+        aw_rbtree_delete(tree, p);
+    }
+
+    return p;
+}
+
+aw_rbtree_node_t *
 aw_rbtree_min(aw_rbtree_t *tree, aw_rbtree_node_t *node)
 {
     aw_rbtree_node_t *p = node;
@@ -121,6 +136,36 @@ aw_rbtree_sucessor(aw_rbtree_t *tree, aw_rbtree_node_t *node)
     }
 
     return NULL;
+}
+
+aw_rbtree_node_t *
+aw_rbtree_poppredecessor(aw_rbtree_t *tree, aw_rbtree_node_t *node)
+{
+    aw_rbtree_node_t *p;
+
+    p = aw_rbtree_predecessor(tree, node);
+
+    if (NULL != p) {
+
+        aw_rbtree_delete(tree, p);
+    }
+
+    return p;
+}
+
+aw_rbtree_node_t *
+aw_rbtree_popsucessor(aw_rbtree_t *tree, aw_rbtree_node_t *node)
+{
+    aw_rbtree_node_t *p;
+
+    p = aw_rbtree_sucessor(tree, node);
+
+    if (NULL != p) {
+
+        aw_rbtree_delete(tree, p);
+    }
+
+    return p;
 }
 
 void
@@ -488,10 +533,12 @@ aw_rbtree_print(aw_rbtree_t *tree, aw_rbtree_node_t *node, size_t indent)
     }
 }
 
-#ifdef AW_UNIT_TEST
+#ifdef AW_RBTREE_TEST
 
 int main()
 {
+    aw_rbtree_node_t *node;
+
     aw_rbtree_t rbt;
     aw_rbtree_init(&rbt);
     aw_rbtree_print(&rbt, rbt.root, 0);
@@ -636,7 +683,8 @@ int main()
     printf("---------------------------------------------\n");
 
     //1000 ÓÒºÚÒ¶, ÐÖºÚ, Ë«Ö¶ºÚ, ¸¸ºì
-    aw_rbtree_delete(&rbt, &node8);
+    node = aw_rbtree_pop(&rbt, 1000);
+    printf("node pop 1000: %lu\n", node->key);
     aw_rbtree_print(&rbt, rbt.root, 0);
     printf("---------------------------------------------\n");
 
@@ -684,6 +732,16 @@ int main()
 
     node_max = aw_rbtree_popmax(&rbt, rbt.root);
     printf("max: %lu\n", node_max->key);
+    aw_rbtree_print(&rbt, rbt.root, 0);
+    printf("---------------------------------------------\n");
+
+    node_pre = aw_rbtree_poppredecessor(&rbt, &node4);
+    printf("predecessor: %lu\n", node_pre->key);
+    aw_rbtree_print(&rbt, rbt.root, 0);
+    printf("---------------------------------------------\n");
+
+    node_suc = aw_rbtree_popsucessor(&rbt, &node4);
+    printf("sucessor: %lu\n", node_suc->key);
     aw_rbtree_print(&rbt, rbt.root, 0);
     printf("---------------------------------------------\n");
 

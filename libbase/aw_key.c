@@ -4,7 +4,7 @@ aw_key_t
 aw_str_key(aw_uchar_t *str, size_t len)
 {
     aw_uint32_t     key;
-    int             i;
+    size_t          i;
 
     key = 0;
 
@@ -21,7 +21,7 @@ aw_strcase_key(aw_uchar_t *str, size_t len)
 {
     aw_uint32_t     key;
     aw_uchar_t      lowcase;
-    int             i;
+    size_t          i;
 
     key = 0;
 
@@ -40,7 +40,7 @@ aw_ptr_key(void *ptr)
     return (aw_key_t)ptr;
 }
 
-#ifdef AW_UNIT_TEST
+#ifdef AW_KEY_TEST
 int main()
 {
     aw_key_t key, keycase, keylow, keyptr;
@@ -53,8 +53,10 @@ int main()
     keylow = aw_str_key((aw_uchar_t *)"hello world!!", strlen("hello world!!"));
     keyptr = aw_ptr_key(pi);
 
-    printf("key: %u, keycase: %u, keylow: %u\n", key, keycase, keylow);
-    printf("*pi: %d, pi: %p, keyptr: %x\n", *pi, pi, keyptr);
+    printf("key: %lu, keycase: %lu, keylow: %lu\n", key, keycase, keylow);
+    printf("*pi: %d, pi: %p, keyptr: %lx\n", *pi, pi, keyptr);
+
+    free(pi);
 
     return 1;
 }

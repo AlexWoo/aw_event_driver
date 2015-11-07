@@ -112,7 +112,7 @@ aw_list_tail(aw_list_t *list)
     return node;
 }
 
-#ifdef AW_UNIT_TEST
+#ifdef AW_LIST_TEST
 typedef struct {
     int                 i;
     aw_list_node_t      ln;
